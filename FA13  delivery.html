@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FA13 Delivery — Ragoût prêt à porter</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>:root{
+  --bg:#1408b4;
+  --accent:#1c03be; /* orange/rouge FA13 */
+  --dark:#020d0d;
+  --muted:#111211;
+  --card:#dad4d4;
+  --glass: rgba(12, 125, 206, 0.85);
+  --radius:12px;
+  --container:1100px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:linear-gradient(180deg, #4901f0, #4b04f0 60%);
+  color:var(--dark);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+/* layout */
+.container{max-width:var(--container);margin:0 auto;padding:20px;}
+.site-header{background:var(--card);box-shadow:0 2px 8px rgba(0,0,0,0.06);position:sticky;top:0;z-index:40}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.brand{display:flex;flex-direction:column}
+.logo{font-weight:800;font-size:22px;color:var(--accent);letter-spacing:1px}
+.tag{font-size:12px;color:var(--muted)}
+
+nav{display:flex;gap:10px;align-items:center}
+.nav-btn{background:none;border:1px solid transparent;padding:8px 12px;border-radius:8px;cursor:pointer}
+.nav-btn.active{border-color:var(--accent);color:var(--accent);font-weight:600}
+.cart-btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+
+/* sections */
+.section{padding:28px 0}
+.hidden{display:none}
+
+/* grid menu */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);border-radius:var(--radius);padding:12px;box-shadow:0 6px 24px rgba(0,0,0,0.06);display:flex;flex-direction:column;min-height:180px}
+.card img{width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px}
+.card h3{margin:6px 0 4px;font-size:16px}
+.card p{font-size:13px;color:var(--muted);flex:1}
+.card .price{font-weight:700;color:var(--accent);margin-top:8px}
+.card .actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.btn{border:none;padding:10px 14px;border-radius:10px;background:#eee;cursor:pointer}
+.btn.primary{background:var(--accent);color:white}
+.btn.muted{background:#f1f1f1}
+
+/* order layout */
+.order-layout{display:flex;gap:20px;flex-wrap:wrap}
+.cart-panel{flex:1 1 320px}
+.form-panel{flex:1 1 420px;background:var(--glass);padding:12px;border-radius:12px}
+.cart-list{list-style:none;padding:0;margin:0}
+.cart-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #eee}
+.cart-item small{color:var(--muted)}
+.cart-summary{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+
+/* forms */
+form label{display:block;margin-bottom:10px;font-size:14px}
+form input, form textarea{width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:8px;margin-top:6px}
+.hint{font-size:12px;color:var(--muted)}
+
+/* footer */
+.site-footer{margin-top:40px;padding:20px 0;text-align:center;color:var(--muted)}
+
+/* responsive */
+@media (max-width:800px){
+  .order-layout{flex-direction:column}
+  .header-inner{flex-direction:column;gap:8px;align-items:flex-start}
+}
+/* Section Hero */
+.hero {
+  position: relative;
+  height: 25vh;
+  overflow: hidden;
+  background: linear-gradient(#4901f0, #4901f0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Texte principal */
+.hero-text {
+  position: absolute;
+  top: 20%;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  color: #004aad;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text button {
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hero-text button:hover {
+  background: #003480;
+}
+
+/* Conteneur du livreur et de la route */
+.slide-container {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.delivery-img {
+  position: absolute;
+  bottom: 1px;
+  left: -80px;
+  width: 95px;
+  animation: moveRight 20s linear infinite;
+}
+
+.road {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 23px;
+  background: repeating-linear-gradient(
+    90deg,
+    #444 0,
+    #444 100px,
+    #555 100px,
+    #555 200px
+  );
+  animation: roadMove 2s linear infinite;
+}
+
+@keyframes moveRight {
+  0% { left: -250px; }
+  100% { left: 120%; }
+}
+
+@keyframes roadMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-200px); }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">FA13</div>
+        <div class="tag">Le goût du ragoût, livré chez vous</div>
+      </div>
+      <nav>
+        <button id="btnMenu" class="nav-btn active">Menu</button>
+        <button id="btnOrder" class="nav-btn">Commander</button>
+        <button id="btnCart" class="cart-btn">Panier (<span id="cartCount">0</span>)</button>
+      </nav>
+    </div>
+  </header>
+  <header class="hero">
+    <div class="slide-container">
+      <img src="livreur-fa13.png" alt="Livreur FA13 Delivery" class="delivery-img">
+      <div class="road"></div>
+    </div>
+    <div class="hero-text">
+    </div>
+  </header>
+  <main class="container">
+    <!-- Section Menu -->
+    <section id="menuSection" class="section">
+      <h1>Menu du jour</h1>
+      <div id="menuGrid" class="grid"></div>
+    </section>
+
+    <!-- Section Commander (panier & formulaire) -->
+    <section id="orderSection" class="section hidden">
+      <h1>Votre commande</h1>
+      <div class="order-layout">
+        <div class="cart-panel">
+          <h2>Panier</h2>
+          <ul id="cartList" class="cart-list"></ul>
+          <div class="cart-summary">
+            <div>Total : <strong id="cartTotal">0.00</strong> Gdes</div>
+            <div>Articles : <span id="cartItems">0</span></div>
+            <button id="btnClear" class="btn muted">Vider le panier</button>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <h2>Informations client</h2>
+          <form id="orderForm">
+            <label>Nom complet
+              <input type="text" id="customerName" required />
+            </label>
+
+            <label>Adresse (livraison)
+              <input type="text" id="address" required />
+            </label>
+
+            <label>Téléphone
+              <input type="tel" id="phone" required />
+            </label>
+
+            <label>Notes (optionnel)
+              <textarea id="notes" rows="3"></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary" id="btnPlaceOrder">Passer la commande</button>
+              <button type="button" class="btn" id="btnSaveDraft">Sauvegarder brouillon</button>
+            </div>
+            <p class="hint">Les paiements ne sont pas traités ici; ce prototype envoie la commande à <code>/api/orders</code> (simulé).</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Success / message -->
+    <section id="successSection" class="section hidden">
+      <h1>Commande reçue</h1>
+      <p id="successMessage"></p>
+      <button id="btnNewOrder" class="btn">Nouvelle commande</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© FA13 Delivery — Ragoûts traditionnels. mail: fabiolarchange13@gmail.com. whatsapp: 355599113</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
+
